@@ -1,5 +1,11 @@
 # huey-queue-stats
 This script gives you some basic information about the queues and schedules used by huey.
+### Installation:
+```bash
+pip install -r git+https://github.com/MarcoGlauser/huey-queue-stats.git
+```
+
+### Usage:
 
 ```bash
 Usage: huey_queue_stats.py [OPTIONS]
