@@ -8,7 +8,10 @@ import time
 
 
 @click.command()
-@click.option('--connection-string', '-c', required=True, help='Connection string to redis including database. for example redis://localhost:6379/0')
+@click.option('--connection-string', '-c',
+              default='redis://localhost:6379',
+              help='Connection string to redis including database. for example redis://localhost:6379/0'
+              )
 @click.option('--queue', '-q', multiple=True, required=True, help='Name of the queue to print stats about. There can be multiple -q arguments.')
 @click.option('--refresh-rate', '-r', default=0.5, help='Stats refresh rate in seconds')
 def display_redis_stats(connection_string, queue, refresh_rate):
@@ -50,7 +53,7 @@ def build_queue_dict(queue_names):
 
 # Copied from https://github.com/coleifer/huey/blob/master/huey/storage.py#L139
 def clean_name(name):
-    return re.sub('[^a-z0-9]', '', name.lower())
+    return re.sub('[^a-z0-9]', '', name)
 
 
 def main():

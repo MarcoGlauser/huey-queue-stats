@@ -16,8 +16,13 @@ Options:
 ```
 
 
-Example: 
+###Examples:
+
+Local Redis
 ```bash
-source venv/bin/activate
-./huey_queue_stats.py -c redis://localhost:6379/0 -q huey1 -q huey2
+./huey_queue_stats.py -q huey1 -q huey2
+```
+Remote Redis
+```bash
+./huey_queue_stats.py -c redis://10.0.0.10:6379/0 -q huey1 -q huey2
 ```
