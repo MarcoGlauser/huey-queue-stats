@@ -13,7 +13,7 @@ setup(name='huey_queue_stats',
       install_requires=required,
       entry_points={
           'console_scripts': [
-              'huey_queue_stats = huey_queue_stats.huey_queue_stats:main'
+              'huey_stats = huey_queue_stats.huey_queue_stats:main'
           ]
       }
       )

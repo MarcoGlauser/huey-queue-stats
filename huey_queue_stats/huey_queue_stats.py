@@ -5,7 +5,7 @@ import click
 import redis
 import time
 
-from huey_queue_stats.queue import Queue
+from .queue import Queue
 
 
 @click.command()
