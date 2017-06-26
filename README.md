@@ -2,7 +2,7 @@
 This script gives you some basic information about the queues and schedules used by huey.
 ### Installation:
 ```bash
-pip install -r git+https://github.com/MarcoGlauser/huey-queue-stats.git
+pip install git+https://github.com/MarcoGlauser/huey-queue-stats.git
 ```
 
 ### Usage:
