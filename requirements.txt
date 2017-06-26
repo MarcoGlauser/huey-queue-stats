@@ -1,2 +1,2 @@
-redis
-click
+click==6.7
+redis==2.10.5
