@@ -8,7 +8,7 @@ pip install git+https://github.com/MarcoGlauser/huey-queue-stats.git
 ### Usage:
 
 ```bash
-Usage: huey_stats.py [OPTIONS]
+Usage: huey_stats [OPTIONS]
 
 Options:
   -c, --connection-string TEXT  Connection string to redis including database.
@@ -26,9 +26,9 @@ Options:
 
 Local Redis
 ```bash
-./huey_stats.py -q huey1 -q huey2
+huey_stats -q huey1 -q huey2
 ```
 Remote Redis
 ```bash
-./huey_stats.py -c redis://10.0.0.10:6379/0 -q huey1 -q huey2
+huey_stats -c redis://10.0.0.10:6379/0 -q huey1 -q huey2
 ```
