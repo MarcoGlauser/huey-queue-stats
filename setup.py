@@ -4,7 +4,7 @@ with open('requirements.txt') as f:
     required = f.read().splitlines()
 
 setup(name='huey_queue_stats',
-      version='0.1.0',
+      version='0.2.0',
       description='Shows basic information about one or more huey queues',
       author='Adtech @ APG SGA AG',
       author_email='marco.glauser@apgsga.ch',
