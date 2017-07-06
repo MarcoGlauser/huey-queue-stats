@@ -15,6 +15,7 @@ from .queue import Queue
               )
 @click.option('--queue_names', '-q', multiple=True, required=True, help='Name of the queues to print stats about. There can be multiple -q arguments.')
 @click.option('--refresh-rate', '-r', default=0.5, help='Stats refresh rate in seconds')
+@click.version_option()
 def display_redis_stats(connection_string, queue_names, refresh_rate):
     os.system('clear')
     print('Connecting to redis...')
