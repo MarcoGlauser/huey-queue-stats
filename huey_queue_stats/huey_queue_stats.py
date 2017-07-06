@@ -31,22 +31,25 @@ def display_redis_stats(connection_string, queue_names, refresh_rate):
 
         os.system('clear')
         for queue in queues:
-            if queue.is_growing():
-                size_change_sign = '+'
-            elif queue.is_shrinking():
-                size_change_sign = '-'
-            else:
-                size_change_sign = '='
 
             print('-'*40)
             print(queue.name + ' - ' + queue.redis_queue)
             print('-'*40)
             print('|' * min(100, queue.length))
-            print('Queued: %s %s' % (queue.length, size_change_sign))
+            print('Queued: %s %s' % (queue.length, queue_size_change_sign(queue)))
             print('Scheduled: %s' % queue.scheduled)
             print('\n\n')
 
         time.sleep(refresh_rate)
+
+
+def queue_size_change_sign(queue):
+    if queue.is_growing():
+        return '+'
+    elif queue.is_shrinking():
+        return '-'
+    else:
+        return '='
 
 
 def main():
