@@ -16,4 +16,4 @@ setup(name='huey_queue_stats',
               'huey_stats = huey_queue_stats.huey_queue_stats:main'
           ]
       }
-      )
+)
