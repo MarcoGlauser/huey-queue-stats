@@ -25,7 +25,7 @@ class QueuePrinter:
                       '-' * 40 + '\n' + \
                       '{queue_length_visualization}\n' + \
                       'Queued: {queue_length} {queue_length_change_sign} \n' + \
-                      'Scheduled: {scheduled_length}\n' + \
+                      'Scheduled: {scheduled_length}\n\n' + \
                       '{execution_stats}\n' + \
                       '\n\n'
 
