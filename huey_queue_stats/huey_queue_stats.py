@@ -5,7 +5,9 @@ import click
 import redis
 import time
 
-from .queue import Queue
+from huey_queue_stats.printer import Printer
+
+from .queue import TaskQueue
 
 
 @click.command()
@@ -17,39 +19,25 @@ from .queue import Queue
 @click.option('--refresh-rate', '-r', default=0.5, help='Stats refresh rate in seconds')
 @click.version_option()
 def display_redis_stats(connection_string, queue_names, refresh_rate):
-    os.system('clear')
+    Printer.clear()
     print('Connecting to redis...')
-    r = redis.Redis.from_url(connection_string, max_connections=10)
-    queues = []
+    pool = redis.BlockingConnectionPool.from_url(
+            connection_string,
+            max_connections=5,
+            timeout=10
+    )
 
-    for queue_name in queue_names:
-        queues.append(Queue(queue_name, r))
+    queues = [TaskQueue(queue_name, pool) for queue_name in queue_names]
 
+    printer = Printer(queues)
     while True:
-        for queue in queues:
-            queue.update()
+        [queue.update() for queue in queues]
 
-        os.system('clear')
-        for queue in queues:
+        Printer.clear()
 
-            print('-'*40)
-            print(queue.name + ' - ' + queue.redis_queue)
-            print('-'*40)
-            print('|' * min(100, queue.length))
-            print('Queued: %s %s' % (queue.length, queue_size_change_sign(queue)))
-            print('Scheduled: %s' % queue.scheduled)
-            print('\n\n')
+        print(printer.format_queue_string())
 
         time.sleep(refresh_rate)
-
-
-def queue_size_change_sign(queue):
-    if queue.is_growing():
-        return '+'
-    elif queue.is_shrinking():
-        return '-'
-    else:
-        return '='
 
 
 def main():
@@ -57,7 +45,7 @@ def main():
     try:
         display_redis_stats()
     except KeyboardInterrupt:
-        os.system('clear')
+        Printer.clear()
         print('\n')
     finally:
         os.system('setterm -cursor on')

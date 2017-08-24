@@ -1,3 +1,5 @@
 click==6.7
 redis==2.10.5
 bumpversion==0.5.3
+huey==1.4.0
+tabulate==0.7.7
