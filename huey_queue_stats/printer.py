@@ -20,7 +20,7 @@ class Printer:
 class QueuePrinter:
     def __init__(self, queue: TaskQueue):
         self.queue = queue
-        self.layout = '-'*40 + '\n' + \
+        self.layout = '-' * 40 + '\n' + \
                       queue.name + ' - ' + queue.redis_queue + '\n' + \
                       '-' * 40 + '\n' + \
                       '{queue_length_visualization}\n' + \
@@ -39,7 +39,7 @@ class QueuePrinter:
         )
 
     def _format_execution_stats(self,):
-        tabulate_headers = ['Task' + ' ' * 25, 'Execution Time(ms)', 'Task/min']
+        tabulate_headers = ['Task' + ' ' * 22, 'Avg Time(ms)', 'Task/min']
         tasks = sorted(self.queue.event_queue.execution_stats.items())
         tabulate_items = map(lambda item: [
             item[0],
