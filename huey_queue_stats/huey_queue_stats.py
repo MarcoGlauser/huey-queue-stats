@@ -26,17 +26,13 @@ def display_redis_stats(connection_string, queue_names, refresh_rate):
             max_connections=5,
             timeout=10
     )
-
     queues = [TaskQueue(queue_name, pool) for queue_name in queue_names]
-
     printer = Printer(queues)
     while True:
         [queue.update() for queue in queues]
 
         Printer.clear()
-
         print(printer.format_queue_string())
-
         time.sleep(refresh_rate)
 
 
